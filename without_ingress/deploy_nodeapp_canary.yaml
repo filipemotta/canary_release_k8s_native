@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nodeapp
+    env: canary
+  name: nodeapp-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeapp
+      env: canary
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodeapp
+        env: canary
+    spec:
+      containers:
+      - image: filipemotta/node_app:2.0
+        name: nodepp-prod-c2
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3333
+        resources: {}
+      imagePullSecrets:
+      - name: regcred
+status: {}

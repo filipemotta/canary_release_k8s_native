@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nodeapp
+    env: prod
+  name: nodeapp-production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodeapp
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodeapp
+        env: prod
+    spec:
+      containers:
+      - image: filipemotta/node_app:1.0
+        name: nodepp-prod-c1
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3333
+        resources: {}
+      imagePullSecrets:
+      - name: regcred
+status: {}
