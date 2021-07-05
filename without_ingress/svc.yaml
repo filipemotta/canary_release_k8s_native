@@ -4,7 +4,6 @@ metadata:
   creationTimestamp: null
   labels:
     app: nodeapp
-    env: prod
   name: nodeapp-svc
 spec:
   ports:
@@ -13,4 +12,3 @@ spec:
     targetPort: 3333
   selector:
     app: nodeapp
-    env: prod
